@@ -10,10 +10,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val subLauncher = registerForActivityResult(SubActivity.ResultContract()) { result ->
-        result?.let {
-            Snackbar.make(this@MainActivity, binding.root, result, Snackbar.LENGTH_SHORT).show()
-        }
+    private val subLauncher = registerForActivityResult(SubActivity.ResultContract()) {
+        if (!it.isNullOrEmpty())
+            Snackbar.make(this@MainActivity, binding.root, it, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
